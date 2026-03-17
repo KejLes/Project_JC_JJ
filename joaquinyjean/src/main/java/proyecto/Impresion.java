@@ -43,10 +43,27 @@ public class Impresion {
                 System.out.println("Opción no válida. Por favor, elija una opción del 1 al 4.");
                 reiniciarOpciones = true;
                 break;
-            return reiniciarOpciones;
+        }
 
+        volveraInterfaz(reiniciarOpciones);
+        return reiniciarOpciones;
+    }
+
+    private void volveraInterfaz(boolean reiniciarOpciones) {
+        if (reiniciarOpciones) {
+            Interfaz();
         }
     }
 
+    //estos nomas para que no se muestren errores, estos no vendran aqui luego se rar
+    public void imprimirTitulos() {
+        // Lógica para mostrar todos los títulos
+    }
+    public void buscarVideojuego() {
+        // Lógica para buscar videojuego por ID o título
+    }
+    public void mostrarCarrito() {
+        // Lógica para mostrar el carrito de compras
+    }
 
 }
