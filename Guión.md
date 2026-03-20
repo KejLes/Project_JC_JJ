@@ -44,7 +44,7 @@ Recomendaciones
 
 
 
-Taras para hitos:
+Tareas para hitos:
 
 
 
