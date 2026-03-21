@@ -1,6 +1,6 @@
 package proyecto;
 
-public interface Accionar {
+public interface Accionar {//si revisas, videojuego tiene los metodos de esta interfaz 
     
     public String listarVideojuegos ();
 
