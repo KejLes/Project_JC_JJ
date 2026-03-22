@@ -2,18 +2,36 @@ package proyecto;
 
 import java.util.ArrayList;
 
+/**
+ * Clase que representa un videojuego físico. Hereda de la clase abstracta
+ * Videojuego e implementa el método mostrarInfo() para mostrar información
+ * específica de los videojuegos físicos, como su estado y si viene en caja.
+ * Contiene un atributo String estado para indicar si el juego es nuevo o usado,
+ * y un atributo boolean caja para indicar si el juego viene en caja o solo posee el disco/cartucho.
+ */
 public class Fisico extends Videojuego{
-    String Estado;//el estado del juego, si es nuevo o usado
-    boolean Caja; //el juego viene en caja o sólo posee el disco/cartucho
+    String  estado;//el estado del juego, si es nuevo o usado
+    boolean caja; //el juego viene en caja o sólo posee el disco/cartucho
 
-    public Fisico (int ID, String Nombre, String Desarrolladora, ArrayList<String> Genero, boolean Disponible, String Estado, boolean Caja){
-        super(ID, Nombre, Desarrolladora, Genero, Disponible);
-        this.Estado=Estado;
-        this.Caja=Caja;
+    public Fisico (int ID, String Nombre, String Desarrolladora, ArrayList<String> Genero, boolean estadoDisponible, String estado, boolean caja){
+        super(ID, Nombre, Desarrolladora, Genero, estadoDisponible);
+        this.estado = estado;
+        this.caja = caja;
     }
 
+    /**
+     * El metodo abstracto que hereda de videojuego
+     */
     @Override
     public void mostrarInfo(){
-        //el metodo abstracto que necesita
+        System.out.printf("""
+        Información del videojuego físico:
+        - ID: %d
+        - Nombre: %s
+        - Desarrolladora: %s
+        - Género: %s
+        - Estado: %s
+        - Viene en caja: %b\n
+                """, ID, Nombre, Desarrolladora, Genero, estado, caja);
     }
 }

@@ -1,0 +1,2 @@
+Imagino que la interfaz debería de ser implementada por dos clases como mínimo, ¿Cierto?
+Igual con la clase abstracta
