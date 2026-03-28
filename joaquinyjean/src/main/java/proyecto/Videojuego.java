@@ -75,4 +75,9 @@ public abstract class Videojuego implements Accionar {
 	 * Metodo abstracto obligatorio para los metodos hijos
 	 */
 	public abstract void mostrarInfo();
+
+	/**
+	 * Metodo abstracto obligatorio para los metodos hijos
+	 */
+	public abstract String obtenerFormatoDescripcion();
 }

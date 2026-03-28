@@ -30,8 +30,12 @@ public class Fisico extends Videojuego{
         - Nombre: %s
         - Desarrolladora: %s
         - Género: %s
-        - Estado: %s
-        - Viene en caja: %b\n
-                """, ID, Nombre, Desarrolladora, Genero, estado, caja);
+        - %s\n
+                """, ID, Nombre, Desarrolladora, Genero, obtenerFormatoDescripcion());
+    }
+
+    @Override
+    public String obtenerFormatoDescripcion() {
+        return ("Estado: " + estado + "\nViene en caja: " + caja);
     }
 }

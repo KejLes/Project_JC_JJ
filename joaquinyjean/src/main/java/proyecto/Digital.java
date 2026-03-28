@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * Videojuego e implementa el método mostrarInfo() para mostrar información
  * específica de los videojuegos digitales, como si requieren conexión a
  * internet para jugar. Contiene un atributo booleano conexionRequerida para
- * indicar si el juego necesita conexión a internet.
+ * indicar si el juego necesita conexión a internet. 
  */
 public class Digital extends Videojuego{
     boolean conexionRequerida; //si el juego requiere conexión a internet para jugarlo
@@ -29,7 +29,15 @@ public class Digital extends Videojuego{
         - Nombre: %s
         - Desarrolladora: %s
         - Género: %s
-        - Requiere conexión a internet: %b\n
-                """, ID, Nombre, Desarrolladora, Genero, conexionRequerida);
+        - %s\n
+                """, ID, Nombre, Desarrolladora, Genero, obtenerFormatoDescripcion());
+    }
+
+    /**
+     * El metodo abstracto que devuelve información de los campos de Digital
+     */
+    @Override
+    public String obtenerFormatoDescripcion() {
+        return ("Conexión requerida: " + conexionRequerida);
     }
 }
