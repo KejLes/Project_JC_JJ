@@ -25,6 +25,9 @@ public abstract class Soundtrack implements AccionSound{
 
     }
 
+    /**
+     * Los getters son... pues eso, getters, metodos para obtener los valores de los atributos
+	 */
     public int getID() {
         return this.ID;
     }
@@ -44,16 +47,26 @@ public abstract class Soundtrack implements AccionSound{
     public boolean getDisponible() {
         return this.estadoDisponible;
     }
-
+    /**
+	 * Retornará una lista de soundtracks, por ahora sólo una lista vacia
+	 */
     @Override
     public String listarSoundtracks(){
         String lista = " ";
 		return lista;
     }
+
+    /**
+	 * El metodo devolverá más que solo el nombre pero por ahora...
+	 */
     @Override
     public String buscarSoundtrack(){
         return this.Nombre;
     }
+
+    /**
+	 * Agregar al carrito si está estadoDisponible
+	 */
     @Override
     public boolean agregarAlCarrito (boolean estadoDisponible){
         return estadoDisponible;

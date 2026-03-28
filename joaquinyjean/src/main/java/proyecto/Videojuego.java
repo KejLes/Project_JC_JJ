@@ -25,7 +25,9 @@ public abstract class Videojuego implements Accionar {
 		this.estadoDisponible = estadoDisponible;
 
 	}
-
+	/*Los getters son... pues eso, getters, 
+	metodos para obtener los valores de los atributos
+	 */
 	public int getID() {
 		return this.ID;
 	}
