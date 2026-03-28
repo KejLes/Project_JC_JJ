@@ -29,15 +29,15 @@ public class Digital extends Videojuego{
         - Nombre: %s
         - Desarrolladora: %s
         - Género: %s
-        - %s\n
+        %s\n
                 """, ID, Nombre, Desarrolladora, Genero, obtenerFormatoDescripcion());
     }
 
     /**
-     * El metodo abstracto que devuelve información de los campos de Digital
+     * El metodo abstracto que devuelve información del campo de Digital
      */
     @Override
     public String obtenerFormatoDescripcion() {
-        return ("Conexión requerida: " + conexionRequerida);
+        return ("- Conexión requerida: " + conexionRequerida);
     }
 }
