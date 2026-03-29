@@ -1,4 +1,4 @@
-package pruebaJson;
+package proyecto;
 
 public abstract class Soundtrack implements AccionSound{
     /**

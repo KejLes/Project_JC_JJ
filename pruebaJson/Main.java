@@ -1,4 +1,4 @@
-package pruebaJson;
+
 
 import java.util.Scanner;
 
