@@ -1,4 +1,4 @@
-package proyecto;
+package proyecto.colecciones_soundtrack;
 
 public abstract class Soundtrack implements AccionSound{
     /**

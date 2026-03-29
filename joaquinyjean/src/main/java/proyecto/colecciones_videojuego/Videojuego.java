@@ -1,4 +1,4 @@
-package proyecto;
+package proyecto.colecciones_videojuego;
 
 import java.util.ArrayList;
 

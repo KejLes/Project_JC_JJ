@@ -1,4 +1,4 @@
-package proyecto;
+package proyecto.consola;
 
 import java.util.Scanner;
 

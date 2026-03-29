@@ -2,6 +2,9 @@ package proyecto;
 
 import java.util.ArrayList;
 
+import proyecto.colecciones_videojuego.Digital;
+import proyecto.colecciones_videojuego.Fisico;
+
 public class Main {
     // public <T extends Videojuego> void buscarporID (int ID, T[] videojuegos){//metodo generico que  busca el videojuego por id
     //     for (T videojuego : videojuegos){ //indistintanmente si es fisico o digital
