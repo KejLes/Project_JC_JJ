@@ -22,10 +22,10 @@ public class VideojuegoJSON {
                 bw.write(json);
             }
 
-            System.out.println("✅ JSON guardado en: " + ruta);
+            System.out.println("JSON guardado en: " + ruta);
 
         } catch (IOException e) {
-            System.err.println("❌ Error al guardar JSON: " + e.getMessage());
+            System.err.println("Error al guardar JSON: " + e.getMessage());
         }
     }
 
