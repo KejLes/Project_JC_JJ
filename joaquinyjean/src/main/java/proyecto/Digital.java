@@ -13,7 +13,7 @@ public class Digital extends Videojuego{
     boolean conexionRequerida; //si el juego requiere conexión a internet para jugarlo
 
 
-    public Digital (int ID, String Nombre, String Desarrolladora, ArrayList<String> Genero, boolean estadoDisponible, boolean conexionRequerida){
+    public Digital (String ID, String Nombre, String Desarrolladora, ArrayList<String> Genero, boolean estadoDisponible, boolean conexionRequerida){
         super(ID, Nombre, Desarrolladora, Genero, estadoDisponible);
         this.conexionRequerida = conexionRequerida;
     }
