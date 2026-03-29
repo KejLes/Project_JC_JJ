@@ -22,5 +22,37 @@
         "videojuegoAsociado": "The Legend of Zelda: Majoras Mask",
         "duracion": "3:02",
         "estadoDisponible": false
+    },
+    {
+        "id": 4,
+        "nombre": "Sevcon",
+        "compositor": "BigGiantCircles",
+        "videojuegoAsociado": "JustShapesAndBeats",
+        "duracion": "3:20",
+        "estadoDisponible": true
+    },
+    {
+        "id": 5,
+        "nombre": "Ember",
+        "compositor": "Kubbi",
+        "videojuegoAsociado": "Adventure foward",
+        "duracion": "3:00",
+        "estadoDisponible": false
+    },
+    {
+        "id": 6,
+        "nombre": "Stereo Madness",
+        "compositor": "ForeverBound",
+        "videojuegoAsociado": "Geometry Dash",
+        "duracion": "2:00",
+        "estadoDisponible": true
+    },
+    {
+        "id": 7,
+        "nombre": "Baking the Wondertart",
+        "compositor": "Christopher Maddingan",
+        "videojuegoAsociado": "Cuphead",
+        "duracion": "5:20",
+        "estadoDisponible": true
     }
 ]
