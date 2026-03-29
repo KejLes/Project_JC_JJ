@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "juego": "The Legend of Zelda",
+    "desarrolladora": "Nintendo",
+    "genero": "Aventura",
+    "estado_disponible": true
+  },
+  {
+    "id": 2,
+    "juego": "God of War",
+    "desarrolladora": "Santa Monica Studio",
+    "genero": "Acción",
+    "estado_disponible": true
+  },
+  {
+    "id": 3,
+    "juego": "Cyberpunk 2077",
+    "desarrolladora": "CD Projekt Red",
+    "genero": "RPG",
+    "estado_disponible": false
+  }
+]
