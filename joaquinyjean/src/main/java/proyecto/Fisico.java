@@ -26,7 +26,7 @@ public class Fisico extends Videojuego{
     public void mostrarInfo(){
         System.out.printf("""
         Información del videojuego físico:
-        - ID: %d
+        - ID: %s
         - Nombre: %s
         - Desarrolladora: %s
         - Género: %s

@@ -25,7 +25,7 @@ public class Digital extends Videojuego{
     public void mostrarInfo(){
         System.out.printf("""
         Información del videojuego digital:
-        - ID: %d
+        - ID: %s
         - Nombre: %s
         - Desarrolladora: %s
         - Género: %s
