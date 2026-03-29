@@ -2,12 +2,10 @@
 
 public class SoundtrackVideojuego extends Soundtrack {
 
-    private String duracion; // Ej: "2:36"
+    private String duracion; //se escribealgo como 2:00
 
-    public SoundtrackVideojuego(int ID, String Nombre, String Compositor,
-                                 String VideojuegoAsociado, String duracion,
-                                 boolean estadoDisponible) {
-        // Llamamos al constructor del padre (Soundtrack)
+    public SoundtrackVideojuego(int ID, String Nombre, String Compositor, String VideojuegoAsociado, String duracion, boolean estadoDisponible) {
+        // llamamos al constructor del padre
         super(ID, Nombre, Compositor, VideojuegoAsociado, estadoDisponible);
         this.duracion = duracion;
     }
@@ -16,28 +14,28 @@ public class SoundtrackVideojuego extends Soundtrack {
         return duracion;
     }
 
-    // ── Métodos abstractos obligatorios del padre ─────────────────────────
+    // métodos abstractos obligatorios del padre
 
     @Override
     public void mostrarInfo() {
-        System.out.println("┌─────────────────────────────────────────┐");
-        System.out.println("  ID:          " + ID);
-        System.out.println("  Nombre:      " + Nombre);
-        System.out.println("  Compositor:  " + Compositor);
-        System.out.println("  Videojuego:  " + VideojuegoAsociado);
-        System.out.println("  Duración:    " + duracion);
-        System.out.println("  Disponible:  " + (estadoDisponible ? "Sí" : "No"));
-        System.out.println("└─────────────────────────────────────────┘");
+        System.out.println("");
+        System.out.println("  ID: " + ID);
+        System.out.println("  Nombre: " + Nombre);
+        System.out.println("  Compositor: " + Compositor);
+        System.out.println("  Videojuego: " + VideojuegoAsociado);
+        System.out.println("  Duración: " + duracion);
+        System.out.println("  Disponible:" + (estadoDisponible ? "Sí" : "No"));
+        System.out.println("");
     }
 
     @Override
-    public String obtenerFormatoDescripcion() {
+    public String obtenerFormatoDescripcion() { //esto si no sabia :v
         return "[" + ID + "] " + Nombre + " - " + Compositor +
                " (" + VideojuegoAsociado + ") " + duracion;
     }
 
-    // ── Convierte el objeto a bloque JSON para escribirlo ─────────────────
-    public String toJSON() {
+    // convierte el objeto a bloque json para escribirlo
+    public String toJSON() {  //ayuda
         return  "    {\n" +
                 "        \"id\": "                  + ID                          + ",\n" +
                 "        \"nombre\": \""            + Nombre                      + "\",\n" +

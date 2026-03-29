@@ -12,44 +12,44 @@ public class GestorJSON {
         this.ruta = ruta;
     }
 
-    // ── LEER todos los soundtracks del JSON ───────────────────────────────
+    // lee todos los soundtracks del jsson 
     public List<SoundtrackVideojuego> leerSoundtracks() throws IOException {
         List<SoundtrackVideojuego> lista = new ArrayList<>();
 
-        File archivo = new File(ruta);
+        File archivo = new File(ruta); //(bob esponja demacrado)
         if (!archivo.exists()) {
-            System.out.println(" Archivo no encontrado: " + archivo.getAbsolutePath());
+            System.out.println(" Archivo no encontrado: " + archivo.getAbsolutePath());//asi poder copiar la ruta y agregar lo que falta
             return lista;
         }
 
-        try (BufferedReader br = new BufferedReader(
-                new InputStreamReader(new FileInputStream(ruta), "UTF-8"))) {
+        try (BufferedReader br = new BufferedReader(//br es nombre común para un bufferedreader, no es importante
+                new InputStreamReader(new FileInputStream(ruta), "UTF-8"))) {//recomendado para las tildes
 
-            // Variables temporales para cada objeto
-            int     id                 = -1;
-            String  nombre             = null;
-            String  compositor         = null;
-            String  videojuegoAsociado = null;
-            String  duracion           = null;
-            boolean estadoDisponible   = false;
+            // vsariables temporales para cada objeto para ir guardando los datos a medida que se leen las líneas
+            int id = -1;
+            String nombre = null;
+            String compositor = null;
+            String videojuegoAsociado = null;
+            String duracion = null;
+            boolean estadoDisponible = false;
 
-            String linea;
+            String linea;//cada línea del archivo se lee aquí, y se procesa según su contenido
             while ((linea = br.readLine()) != null) {
-                linea = linea.trim();
+                linea = linea.trim();//trim sirve para eliminar espacios al inicio y al final de la línea
 
                 if (linea.equals("{")) {
-                    // Nuevo objeto: resetear variables
-                    id                 = -1;
-                    nombre             = null;
-                    compositor         = null;
+                    // nuevo objeto: resetear variables
+                    id = -1;
+                    nombre = null;
+                    compositor = null;
                     videojuegoAsociado = null;
-                    duracion           = null;
-                    estadoDisponible   = false;
+                    duracion = null;
+                    estadoDisponible = false;
 
-                } else if (linea.startsWith("\"id\"")) {
+                } else if (linea.startsWith("\"id\"")) {//si la línea empieza con id, entonces se extrae el valor y se guarda en la variable id
                     id = Integer.parseInt(extraerValor(linea));
 
-                } else if (linea.startsWith("\"nombre\"")) {
+                } else if (linea.startsWith("\"nombre\"")) {//igualmente para el nombre, compositor, videojuego asociado, duración y estado disponible
                     nombre = extraerValor(linea);
 
                 } else if (linea.startsWith("\"compositor\"")) {
@@ -65,13 +65,9 @@ public class GestorJSON {
                     estadoDisponible = Boolean.parseBoolean(extraerValor(linea));
 
                 } else if (linea.startsWith("}")) {
-                    // Fin del objeto: crear el soundtrack si tiene lo mínimo
+                    // fin del objeto, crear el soundtrack si tiene lo mínimo
                     if (id != -1 && nombre != null) {
-                        lista.add(new SoundtrackVideojuego(
-                            id, nombre, compositor,
-                            videojuegoAsociado, duracion,
-                            estadoDisponible
-                        ));
+                        lista.add(new SoundtrackVideojuego(id,nombre,compositor,videojuegoAsociado,duracion,estadoDisponible));
                     }
                 }
             }
@@ -80,58 +76,55 @@ public class GestorJSON {
         return lista;
     }
 
-    // ── LISTAR todos los soundtracks ──────────────────────────────────────
+    // listar todos los soundtracks
     public void listar() throws IOException {
         List<SoundtrackVideojuego> lista = leerSoundtracks();
 
-        System.out.println("\n🎵 Biblioteca de Soundtracks");
-        System.out.println("══════════════════════════════════════════");
+        System.out.println("\n Biblioteca de Soundtracks");
+        System.out.println("");
 
         if (lista.isEmpty()) {
             System.out.println("No hay soundtracks registrados.");
             return;
         }
 
-        for (SoundtrackVideojuego s : lista) {
+        for (SoundtrackVideojuego s : lista) { //s es el nombre común para un objeto de la clase SoundtrackVideojuego, no es importante, se puede cambiar por cualquier otro nombre, pero s de soundtrack es fácil de entender
             // Usamos el método de la interfaz AccionSound
             System.out.println(s.obtenerFormatoDescripcion());
         }
 
-        System.out.println("══════════════════════════════════════════");
-        System.out.println("Total: " + lista.size() + " soundtracks\n");
+        System.out.println("");
+        System.out.println("Total: " + lista.size() + " soundtracks\n");//dice la cantidad de msuicas
     }
-
-    // ── BUSCAR por ID ─────────────────────────────────────────────────────
+    // busca por id 
     public void buscarPorId(int id) throws IOException {
         List<SoundtrackVideojuego> lista = leerSoundtracks();
 
-        System.out.println("\n🔍 Buscando ID " + id + "...");
-
+        System.out.println("\n Buscando id" + id + "..."); //xd que de la ilusión que es una pantalla de carga
         boolean encontrado = false;
-        for (SoundtrackVideojuego s : lista) {
+        for (SoundtrackVideojuego s : lista) {//por cada soundtrack de la lista, se compara su id con el id buscado, si coincide, se muestra su información usando el método mostrarinfo
             if (s.getID() == id) {
-                s.mostrarInfo(); // Usamos el método abstracto implementado
+                s.mostrarInfo(); // usamos el método abstracto implementado
                 encontrado = true;
                 break;
             }
         }
 
-        if (!encontrado) {
-            System.out.println("❌ No existe ningún soundtrack con ID: " + id + "\n");
+        if (!encontrado) {//si no fue encontrado
+            System.out.println("No existe ningún soundtrack con id: " + id + " pipipi \n");
         }
     }
-
-    // ── BUSCAR por nombre (búsqueda parcial) ──────────────────────────────
+    // burcar por nombre (búsqueda parcial) 
     public void buscarPorNombre(String texto) throws IOException {
         List<SoundtrackVideojuego> lista = leerSoundtracks();
         String textoBuscar = texto.toLowerCase();
 
-        System.out.println("\n🔍 Resultados para: \"" + texto + "\"");
-        System.out.println("──────────────────────────────────────────");
+        System.out.println("\n Resultados para: \"" + texto + "\"");
+        System.out.println("");
 
         boolean hayResultados = false;
         for (SoundtrackVideojuego s : lista) {
-            // Buscamos en nombre y en videojuego asociado
+            // buscamos en nombre y en videojuego asociado
             if (s.getNombre().toLowerCase().contains(textoBuscar) ||
                 s.getVideojuegoAsociado().toLowerCase().contains(textoBuscar)) {
                 System.out.println(s.obtenerFormatoDescripcion());
@@ -140,49 +133,46 @@ public class GestorJSON {
         }
 
         if (!hayResultados) {
-            System.out.println("❌ Sin resultados para: " + texto);
+            System.out.println(" NoN hay resultados para: " + texto);
         }
         System.out.println();
     }
 
-    // ── AGREGAR un soundtrack nuevo ───────────────────────────────────────
+    // agregar un soundtrack nuevo
     public void agregar(SoundtrackVideojuego nuevo) throws IOException {
         List<SoundtrackVideojuego> lista = leerSoundtracks();
 
-        // Usar agregarAlCarrito de la interfaz para verificar disponibilidad
+        // usar agregaralcarrito de la interfaz para verificar disponibilidad, con el boolean ese del principio
         if (!nuevo.agregarAlCarrito(nuevo.getDisponible())) {
-            System.out.println("⚠️ El soundtrack no está disponible.");
+            System.out.println(" El soundtrack no está disponible.");
             return;
         }
-
-        lista.add(nuevo);
+        lista.add(nuevo); // agrega a la lista y luego se escribe la lista entera como json, sobreescribiendo 
         escribirJSON(lista);
-        System.out.println("✅ Soundtrack agregado: " + nuevo.getNombre() + "\n");
+        System.out.println(" Soundtrack agregado: " + nuevo.getNombre() + "\n");
     }
 
-    // ── Escribir la lista entera como JSON ────────────────────────────────
+    //escribir la lista entera como json
     private void escribirJSON(List<SoundtrackVideojuego> lista) throws IOException {
-        try (BufferedWriter bw = new BufferedWriter(
+        try (BufferedWriter bw = new BufferedWriter(//bw es nombre para bufferedwriter
                 new OutputStreamWriter(new FileOutputStream(ruta, false), "UTF-8"))) {
 
-            bw.write("[");
+            bw.write("[");//esto escribe un formato json basico
             bw.newLine();
 
-            for (int i = 0; i < lista.size(); i++) {
+            for (int i = 0; i < lista.size(); i++) {//esto recorre la lista de soundtracks y escrribe
                 bw.write(lista.get(i).toJSON());
                 if (i < lista.size() - 1) bw.write(",");
                 bw.newLine();
             }
 
-            bw.write("]");
+            bw.write("]");//esto cierra el fromato jason
             bw.newLine();
         }
     }
 
-    // ── Extraer el valor de una línea JSON ────────────────────────────────
-    // "nombre": "Megalovania",  →  Megalovania
-    // "id": 1,                 →  1
-    private String extraerValor(String linea) {
+    // extraer el valor de una línea json
+    private String extraerValor(String linea) {//extrae el valor de una linea json
         if (linea.endsWith(",")) {
             linea = linea.substring(0, linea.length() - 1);
         }
