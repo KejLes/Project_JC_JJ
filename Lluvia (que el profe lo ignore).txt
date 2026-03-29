@@ -1,2 +1,22 @@
 Librería de Videojuegos
 B
+
+Jean 28/03/26:
+Se puede usar filewritter para un método de cesta, el cual el archivo csv de la cesta es uno vacío,
+el usuario debe escribir el ID del videojuego que desea llevarse, entonces eso pasará en una condicional, si la
+id existe en el fichero de videojuego, entonces lo añade al cvs, y luego a sí mismo añadirá toda la línea de
+datos que tiene en el csv del videojuego sólo para llevarlo a la cesta, sin necesidad de escribir todos sus datos
+manualmente.
+
+Eso... para soundtrack, pienso que debería ser un csv o json aparte, osea con exactamente los mismos procedimientos,
+pero como Soundtrack es algo aparte de videojuego, las ids se repiten y si está junto a Videojuego, podría causar
+errores.
+
+Lo mismo, buffered reader leerá todos los atributos de la clase videojuego y también la clase Soundtrack
+Random accsess file nos ayudará a buscar el videojuego o soundtrack por ID, pero antes nos preguntará
+si buscamos un videojuego o soundtrack.
+
+Jean 29/03/26
+Llamad a Dios: Ahoraa aprender el buffered reader, el file writer y todo eso, en fin no se que entregaremos 
+(imagen del bob esponja demacrado) peero, hemos añadido una nueva clase abstracta que usara json, que es el Soundtrack,
+tiene una interfaz propia, va a ser un poco lioso pero lo intentaremos.
