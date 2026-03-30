@@ -13,7 +13,14 @@ public class Fisico extends Videojuego{
     String  estado;//el estado del juego, si es nuevo o usado
     boolean caja; //el juego viene en caja o sólo posee el disco/cartucho
 
-    public Fisico (String ID, String Nombre, String Desarrolladora, ArrayList<String> Genero, boolean estadoDisponible, String estado, boolean caja){
+    public Fisico (String ID,
+            String Nombre,
+            String Desarrolladora,
+            ArrayList<String> Genero,
+            boolean estadoDisponible,
+            String estado,
+            boolean caja
+        ){
         super(ID, Nombre, Desarrolladora, Genero, estadoDisponible);
         this.estado = estado;
         this.caja = caja;
