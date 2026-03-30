@@ -15,9 +15,9 @@ package proyecto.persistencia;
  * 	4 - Escribir en CSV
  * 	5 - Pasar Fisico a String
  * 	6 - Pasar Digital a String
+ *
+ * Creo debería añadir más
  */
-
-import proyecto.colecciones_videojuego.*;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -26,28 +26,40 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 
-public class gestorFicherosCSV {
-	public static void main(String[] args) {
-		String	nombreArchivo	= "prueba.csv";
-		ArrayList<Videojuego> videojuegos = new ArrayList<>();
+import proyecto.colecciones_videojuego.Fisico;
+import proyecto.colecciones_videojuego.Videojuego;
 
+public class GestorFicherosCSV {
+
+	/**
+	 * Llama a leerFisicoODigital con ambas opciones y junta ambos HashMap en uno
+	 */
+	public static HashMap<String, Videojuego> leerCSV () {
+		//leerFisicoODigital
+		return null;
+	}
+
+	/**
+	 * Lee el CSV, puede o leer el de videojuegos fisicos o digitales
+	 */
+	public static HashMap<String, Videojuego> leerFisicoODigital (String nombreArchivo, eVideojuego opcion) {
+		HashMap<String, Videojuego>	videojuegosMap;
+		String						line;
+		String[]					splittedLine;
+		Videojuego					videojuego;
+
+		videojuegosMap = new HashMap<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
-			String line;
-			String[] splittedLine;
-			String[] generos;
+			line = br.readLine();	// La primera linea se omite
 			while ((line = br.readLine()) != null) {
-				if (line.contains("ID"))	// Ignora la primera linea
-					continue;
 				splittedLine = line.split(",");
-				generos = splittedLine[3].split("\\.");
-				videojuegos.add(new Videojuego(
-					splittedLine[0],
-					splittedLine[1],
-					splittedLine[2],
-					new ArrayList<>(Arrays.asList(generos)),
-					splittedLine[4].contains("true")
-				));
+				if (opcion == eVideojuego.FISICO)
+					videojuego = guardarFisico(splittedLine);
+				else	//	Opcion es DIGITAL
+					videojuego = guardarDigital(splittedLine);
+				videojuegosMap.put(videojuego.getID(), videojuego);
 			}
 		} catch (IOException e) {
 			System.out.printf("""
@@ -57,13 +69,37 @@ public class gestorFicherosCSV {
 					""", e.getMessage());
 		}
 
-		System.out.println("\nSe ha leido el archivo, ahora voy a impimirlo:\n");
+		return (videojuegosMap);
+		// System.out.println("\nSe ha leido el archivo, ahora voy a impimirlo:\n");
 
-		for (Videojuego v: videojuegos)
-			System.out.println(v.toString());
+		// for (Videojuego v: videojuegos)
+		// 	System.out.println(v.toString());
 
-		System.out.println("\nSe guardado en listas, ahora lo guardo en un CSV\n");
-		guardarEnCSV(videojuegos, "guardarA.csv");
+		// System.out.println("\nSe guardado en listas, ahora lo guardo en un CSV\n");
+		// guardarEnCSV(videojuegos, "guardarA.csv");
+	}
+
+	public static Videojuego guardarFisico(String [] campos){
+		Videojuego			fisico;
+		ArrayList<String>	generos;
+
+		generos = new ArrayList<>(Arrays.asList(
+			campos[3].split("\\.")
+		));
+		fisico = new Fisico(
+			campos[0],
+			campos[1],
+			campos[2],
+			generos,
+			campos[4].contains("true"),
+			campos[5],
+			campos[6].contains("true")
+		);
+		return (fisico);
+	}
+
+	public static Videojuego guardarDigital(String [] campos){
+		return null;
 	}
 
 	public static void guardarEnCSV(ArrayList<Videojuego> videojuegos, String nombreArchivo) {
