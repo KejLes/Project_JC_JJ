@@ -13,12 +13,13 @@ public class Fisico extends Videojuego{
     String  estado;//el estado del juego, si es nuevo o usado
     boolean caja; //el juego viene en caja o sólo posee el disco/cartucho
 
-    public Fisico (String ID,
-            String Nombre,
-            String Desarrolladora,
+    public Fisico (
+            String  ID,
+            String  Nombre,
+            String  Desarrolladora,
             ArrayList<String> Genero,
             boolean estadoDisponible,
-            String estado,
+            String  estado,
             boolean caja
         ){
         super(ID, Nombre, Desarrolladora, Genero, estadoDisponible);
@@ -47,5 +48,13 @@ public class Fisico extends Videojuego{
     @Override
     public String obtenerFormatoDescripcion() {
         return ("- Estado: " + estado + "\n- Viene en caja: " + caja);
+    }
+
+    public String getEstado() {
+        return (this.estado);
+    }
+
+    public boolean getCaja() {
+        return (this.caja);
     }
 }

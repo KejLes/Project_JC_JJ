@@ -13,7 +13,8 @@ public class Digital extends Videojuego{
     boolean conexionRequerida; //si el juego requiere conexión a internet para jugarlo
 
 
-    public Digital (String ID,
+    public Digital (
+            String ID,
             String Nombre,
             String Desarrolladora,
             ArrayList<String> Genero,
@@ -45,5 +46,9 @@ public class Digital extends Videojuego{
     @Override
     public String obtenerFormatoDescripcion() {
         return ("- Conexión requerida: " + conexionRequerida);
+    }
+
+    public boolean getConexionRequerida() {
+        return (this.conexionRequerida);
     }
 }
