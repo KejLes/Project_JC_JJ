@@ -11,38 +11,59 @@ import java.util.ArrayList;
  * No han sido comentadas los metodos get, porque se entienden por sí mismos.
  */
 public abstract class Videojuego implements Accionar {
-	String						ID;
-	String						Nombre;
-	String						Desarrolladora;
-	ArrayList<String>			Genero;
+	String						id;
+	String						nombre;
+	String						desarrolladora;
+	ArrayList<String>			genero;
 	boolean						estadoDisponible; // Por si se implementa lo de adquirir, la disponibilidad para meterlo al carrito
 
-	public Videojuego(String ID, String Nombre,
-			String Desarrolladora, ArrayList<String> Genero,
+	public Videojuego(String id, String nombre,
+			String desarrolladora, ArrayList<String> genero,
 			boolean estadoDisponible) {
-		this.ID = ID;
-		this.Nombre = Nombre;
-		this.Desarrolladora = Desarrolladora;
-		this.Genero = Genero;
+		this.id = id;
+		this.nombre = nombre;
+		this.desarrolladora = desarrolladora;
+		this.genero = genero;
 		this.estadoDisponible = estadoDisponible;
 	}
 	/*Los getters son... pues eso, getters,
 	metodos para obtener los valores de los atributos
 	 */
-	public String getID() {
-		return this.ID;
+	public String getId() {
+		return this.id;
 	}
 
 	public String getNombre() {
-		return this.Nombre;
+		return this.nombre;
 	}
 
 	public String getDesarrolladora() {
-		return this.Desarrolladora;
+		return this.desarrolladora;
 	}
 
-	public ArrayList<String> getGenero() {
-		return this.Genero;
+	/**
+	 * Devuelve genero en ArrayList
+	 * @return
+	 */
+	public ArrayList<String> getALGenero() {
+		return this.genero;
+	}
+
+	/**
+	 * Devuelve genero en String
+	 * @return
+	 */
+	public String getStringGenero() {
+		String toReturn;
+
+		toReturn = "";	// Es para inicializarlo
+		for (int i = 0; i < genero.size(); i++)
+		{
+			toReturn += genero.get(i);
+			if (i < genero.size() - 1)
+				toReturn += ",";
+		}
+		return (toReturn);
 	}
 
 	public boolean getDisponible() {
@@ -63,7 +84,7 @@ public abstract class Videojuego implements Accionar {
 	 */
 	@Override
 	public String buscarVideojuego() {
-		return this.Nombre;
+		return this.nombre;
 	}
 
 	/**
