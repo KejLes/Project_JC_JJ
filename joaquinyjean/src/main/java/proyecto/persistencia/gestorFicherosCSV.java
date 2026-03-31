@@ -36,28 +36,6 @@ import proyecto.colecciones_videojuego.Videojuego;
 
 public class GestorFicherosCSV {
 
-	/**
-	 * Llama a leerFisicoODigital con ambas opciones y junta ambos HashMap en uno
-	 */
-	public static HashMap<String, Videojuego> leerCSV() {
-		HashMap<String,Videojuego> digitalMap;
-		HashMap<String,Videojuego> fisicoMap;
-		HashMap<String,Videojuego> finalMap;
-
-		digitalMap = leerFisicoODigital(
-			"../../resources\\biblioteca_juegos_digital.csv",
-			eVideojuego.DIGITAL
-		);
-		fisicoMap = leerFisicoODigital(
-			"../../resources\\biblioteca_juegos_fisico.csv",
-			eVideojuego.FISICO
-		);
-
-		finalMap = new HashMap<>(digitalMap + );
-		return null;
-	}
-	//joaquinyjean\src\main\java\resources\biblioteca_juegos_digital.csv
-	//joaquinyjean\src\main\java\proyecto\persistencia\GestorFicherosCSV.java
 	//../../resources\biblioteca_juegos_digital.csv
 	//../../resources\biblioteca_juegos_fisico.csv
 
@@ -69,21 +47,24 @@ public class GestorFicherosCSV {
 	 * @return
 	 */
 	public static HashMap<String, Videojuego> leerFisicoODigital(
-			String nombreArchivo,
-			eVideojuego opcion) {
+			String nombreArchivo
+		) {
 		HashMap<String, Videojuego> videojuegosMap;
-		String line;
-		String[] splittedLine;
-		Videojuego videojuego;
+		String		omitirCabecera;
+		String		linea;
+		String[]	splittedLine;
+		Videojuego	videojuego;
 
 		videojuegosMap = new HashMap<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
-			line = br.readLine(); // La primera linea se omite
-			while ((line = br.readLine()) != null) {
-				splittedLine = line.split(",");
-				if (opcion == eVideojuego.FISICO)
+			omitirCabecera = br.readLine();	// Las tres primeras lineas se omite
+			omitirCabecera = br.readLine();
+			omitirCabecera = br.readLine();
+			while ((linea = br.readLine()) != null) {
+				splittedLine = linea.split(",");
+				if (splittedLine[1].equals("fisico"))
 					videojuego = arrayAFisico(splittedLine);
-				else // Opcion es DIGITAL
+				else	//DIGITAL
 					videojuego = arrayADigital(splittedLine);
 				videojuegosMap.put(videojuego.getId(), videojuego);
 			}
@@ -149,29 +130,26 @@ public class GestorFicherosCSV {
 	}
 
 	/**
-	 * Recibe como argumento un HashMap, se le indica si es Digital o Fisico y guardatodo 
+	 * Recibe como argumento un HashMap, se le indica si es Digital o Fisico y guarda todo a CSV
 	 * @param videojuegos
 	 * @param nombreArchivo
 	 * @param opcion
 	 */
 	public static void guardarEnCSV(
 			HashMap<String,Videojuego> videojuegos,
-			String nombreArchivo,
-			eVideojuego opcion) {
+			String nombreArchivo
+		) {
 		String	lineaAEscribir;
 
 		try (FileWriter fw = new FileWriter(nombreArchivo);
 				BufferedWriter bw = new BufferedWriter(fw)
 			) {
-			if (opcion == eVideojuego.DIGITAL)
-				bw.write("ID,juego,desarrolladora,genero,estado_disponible,conexion_requerida");
-			else if (opcion == eVideojuego.FISICO)
-				bw.write("ID,juego,desarrolladora,genero,estado_disponible,estado,caja");
+			escribirCabeceraCSV(nombreArchivo);
 			for (Map.Entry<String,Videojuego> entry : videojuegos.entrySet()) {
-				if (opcion == eVideojuego.DIGITAL)
-					lineaAEscribir = DigitalToCSV(entry.getValue());
-				else //if (opcion == eVideojuego.FISICO) Lo comento porque sale un aviso de que lineaAEscribir puede no haberse inicializado
-					lineaAEscribir = FisicoToCSV(entry.getValue());
+				if (entry.getValue() instanceof Digital)
+					lineaAEscribir = DigitalToString(entry.getValue());
+				else
+					lineaAEscribir = FisicoToString(entry.getValue());
 				bw.newLine();
 				bw.write(lineaAEscribir);
 			}
@@ -181,9 +159,9 @@ public class GestorFicherosCSV {
 			// System.out.println("Archivo escrito exitosamente.");
 	}
 
-	public static String DigitalToCSV (Videojuego Digital) {
-		String lineaAEscribir;
-		Digital videojuego;
+	public static String DigitalToString (Videojuego Digital) {
+		String	lineaAEscribir;
+		Digital	videojuego;
 
 		videojuego = (Digital) Digital;
 		lineaAEscribir = (
@@ -197,7 +175,7 @@ public class GestorFicherosCSV {
 		return (lineaAEscribir);
 	}
 
-	public static String FisicoToCSV (Videojuego Fisico) {
+	public static String FisicoToString (Videojuego Fisico) {
 		String lineaAEscribir;
 		Fisico videojuego;
 
@@ -209,8 +187,27 @@ public class GestorFicherosCSV {
 			videojuego.getStringGenero('.') + "," +
 			videojuego.getDisponible() + "," +
 			videojuego.getEstado() + "," +
-			videojuego.getCaja() + ","
+			videojuego.getCaja()
 		);
 		return (lineaAEscribir);
+	}
+
+	/**
+	 * Simplemente escribe la cabecera del CSV
+	 * @param nombreArchivo
+	 */
+	public static void escribirCabeceraCSV(String nombreArchivo) {
+		try (FileWriter fw = new FileWriter(nombreArchivo);
+				BufferedWriter bw = new BufferedWriter(fw)
+			) {
+			bw.write("ID,juego,desarrolladora,genero,estado_disponible");
+			bw.newLine();
+			bw.write("ID,fisico,juego,desarrolladora,genero,estado_disponible,estado,caja");
+			bw.newLine();
+			bw.write("ID,digital,juego,desarrolladora,genero,estado_disponible,conexionRequerida");
+			bw.newLine();
+		} catch (IOException e) {
+			System.err.println("Error al escribir el archivo al fichero: " + e.getMessage());
+		}
 	}
 }

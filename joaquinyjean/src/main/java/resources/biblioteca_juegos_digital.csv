@@ -1,12 +1,14 @@
 ID,juego,desarrolladora,genero,estado_disponible
-1,The Legend of Zelda: Breath of the Wild,Nintendo,Aventura.Accion.Mundo Abierto,true
-2,God of War,Santa Monica Studio,Accion.Aventura.Hack and Slash,true
-3,Cyberpunk 2077,CD Projekt Red,RPG.Accion.Mundo Abierto,false
-4,Minecraft,Mojang,Sandbox.Supervivencia.Construccion,true
-5,The Last of Us Part II,Naughty Dog,Aventura.Accion.Terror,false
-6,Elden Ring,FromSoftware,RPG.Accion.Souls,true
-7,FIFA 24,EA Sports,Deportes.Simulacion,true
-8,Red Dead Redemption 2,Rockstar Games,Accion.Aventura.Mundo Abierto,false
-9,Hollow Knight,Team Cherry,Plataformas.Metroidvania.Aventura,true
-10,Hades,Supergiant Games,Roguelike.Accion.Dungeon,true
-11,Bendy and the Ink Machine,Joey Drew Studios,Terror.Aventura.Puzzle,true
+ID,fisico,juego,desarrolladora,genero,estado_disponible,estado,caja
+ID,digital,juego,desarrolladora,genero,estado_disponible,conexionRequerida
+1,fisico,The Legend of Zelda: Breath of the Wild,Nintendo,Aventura.Accion.Mundo Abierto,true,nuevo,true
+2,fisico,God of War,Santa Monica Studio,Accion.Aventura.Hack and Slash,true,usado,true
+3,fisico,Cyberpunk 2077,CD Projekt Red,RPG.Accion.Mundo Abierto,false,usado,false
+4,fisico,Minecraft,Mojang,Sandbox.Supervivencia.Construccion,true,nuevo,true
+5,fisico,The Last of Us Part II,Naughty Dog,Aventura.Accion.Terror,false,usado,true
+6,digital,Elden Ring,FromSoftware,RPG.Accion.Souls,true,false
+7,digital,FIFA 24,EA Sports,Deportes.Simulacion,true,true
+8,digital,Red Dead Redemption 2,Rockstar Games,Accion.Aventura.Mundo Abierto,false,false
+9,digital,Hollow Knight,Team Cherry,Plataformas.Metroidvania.Aventura,true,false
+10,digital,Hades,Supergiant Games,Roguelike.Accion.Dungeon,true,false
+11,digital,Bendy and the Ink Machine,Joey Drew Studios,Terror.Aventura.Puzzle,true,true
