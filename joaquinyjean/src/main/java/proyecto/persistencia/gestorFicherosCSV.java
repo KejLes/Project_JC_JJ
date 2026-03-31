@@ -46,7 +46,7 @@ public class GestorFicherosCSV {
 	 * @param opcion
 	 * @return
 	 */
-	public static HashMap<String, Videojuego> leerFisicoODigital(
+	public static HashMap<String, Videojuego> leerCSV(
 			String nombreArchivo
 		) {
 		HashMap<String, Videojuego> videojuegosMap;
@@ -74,6 +74,7 @@ public class GestorFicherosCSV {
 					Mensaje
 					%s
 					""", e.getMessage());
+			e.printStackTrace();
 		}
 
 		return (videojuegosMap);
@@ -135,13 +136,13 @@ public class GestorFicherosCSV {
 	 * @param nombreArchivo
 	 * @param opcion
 	 */
-	public static void guardarEnCSV(
+	public static void escribirCSV(
 			HashMap<String,Videojuego> videojuegos,
 			String nombreArchivo
 		) {
 		String	lineaAEscribir;
 
-		try (FileWriter fw = new FileWriter(nombreArchivo);
+		try (FileWriter fw = new FileWriter(nombreArchivo, true);
 				BufferedWriter bw = new BufferedWriter(fw)
 			) {
 			escribirCabeceraCSV(nombreArchivo);
@@ -154,11 +155,21 @@ public class GestorFicherosCSV {
 				bw.write(lineaAEscribir);
 			}
 		} catch (IOException e) {
-			System.err.println("Error al escribir el archivo al fichero: " + e.getMessage());
+			System.out.printf("""
+					Error durante la escritura del archivo.
+					Mensaje
+					%s
+					""", e.getMessage());
+			e.printStackTrace();
 		}
 			// System.out.println("Archivo escrito exitosamente.");
 	}
 
+	/**
+	 * Los campos de Digital los pasa a String para escribirlo al CSV
+	 * @param Digital
+	 * @return
+	 */
 	public static String DigitalToString (Videojuego Digital) {
 		String	lineaAEscribir;
 		Digital	videojuego;
@@ -175,6 +186,11 @@ public class GestorFicherosCSV {
 		return (lineaAEscribir);
 	}
 
+	/**
+	 * Los campos de Fisico los pasa a String para escribirlo al CSV
+	 * @param Fisico
+	 * @return
+	 */
 	public static String FisicoToString (Videojuego Fisico) {
 		String lineaAEscribir;
 		Fisico videojuego;
@@ -205,7 +221,6 @@ public class GestorFicherosCSV {
 			bw.write("ID,fisico,juego,desarrolladora,genero,estado_disponible,estado,caja");
 			bw.newLine();
 			bw.write("ID,digital,juego,desarrolladora,genero,estado_disponible,conexionRequerida");
-			bw.newLine();
 		} catch (IOException e) {
 			System.err.println("Error al escribir el archivo al fichero: " + e.getMessage());
 		}
