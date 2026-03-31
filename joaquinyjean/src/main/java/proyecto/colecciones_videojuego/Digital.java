@@ -37,7 +37,7 @@ public class Digital extends Videojuego{
         - Desarrolladora: %s
         - Género: %s
         %s\n
-                """, ID, Nombre, Desarrolladora, Genero, obtenerFormatoDescripcion());
+                """, id, nombre, desarrolladora, getStringGenero(','), obtenerFormatoDescripcion());
     }
 
     /**

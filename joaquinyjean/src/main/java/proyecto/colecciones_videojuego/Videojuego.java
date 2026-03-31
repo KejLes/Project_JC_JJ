@@ -53,7 +53,7 @@ public abstract class Videojuego implements Accionar {
 	 * Devuelve genero en String
 	 * @return
 	 */
-	public String getStringGenero() {
+	public String getStringGenero(char caracter) {
 		String toReturn;
 
 		toReturn = "";	// Es para inicializarlo
@@ -61,7 +61,7 @@ public abstract class Videojuego implements Accionar {
 		{
 			toReturn += genero.get(i);
 			if (i < genero.size() - 1)
-				toReturn += ",";
+				toReturn += caracter;
 		}
 		return (toReturn);
 	}
