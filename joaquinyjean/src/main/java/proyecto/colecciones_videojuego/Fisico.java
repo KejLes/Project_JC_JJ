@@ -14,7 +14,7 @@ public class Fisico extends Videojuego{
     boolean caja; //el juego viene en caja o sólo posee el disco/cartucho
 
     public Fisico (
-            String  ID,
+            int     ID,
             String  Nombre,
             String  Desarrolladora,
             ArrayList<String> Genero,
@@ -34,7 +34,7 @@ public class Fisico extends Videojuego{
     public void mostrarInfo(){
         System.out.printf("""
         Información del videojuego físico:
-        - ID: %s
+        - ID: %d
         - Nombre: %s
         - Desarrolladora: %s
         - Género: %s

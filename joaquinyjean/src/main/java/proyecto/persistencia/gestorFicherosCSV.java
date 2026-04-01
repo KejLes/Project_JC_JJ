@@ -1,12 +1,11 @@
 package proyecto.persistencia;
 
 /*
- * (No es javadoc)
- * Para leer y escribir en csv
- * El metodo devuelve un HashMap con todos los videojuegos, ya sea digital o fisico
- * Otro metodo recibe el HashMap y lo guarda en un CSV
  *
- * Implementará metodos para guardar en la lista si es digital o fisico, osea, dos metodos
+ * Para leer y escribir en csv
+ * El metodo devuelve un TreeMap con todos los videojuegos, ya sea digital o fisico
+ * Otro metodo recibe el TreeMap y lo guarda en un CSV
+ *
  * Para leer será lo mismo que la linea anterior, entonces debería de haber 3 métodos más
  *
  * Métodos:
@@ -16,8 +15,6 @@ package proyecto.persistencia;
  * 	4 - Escribir en CSV
  * 	5 - Pasar Fisico a String
  * 	6 - Pasar Digital a String
- *
- * Creo debería añadir más
  */
 
 import java.io.BufferedReader;
@@ -27,17 +24,28 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import proyecto.colecciones_videojuego.Digital;
 import proyecto.colecciones_videojuego.Fisico;
 import proyecto.colecciones_videojuego.Videojuego;
 
+/**
+ * Para leer y escribir en csv.
+ * El metodo devuelve un TreeMap con todos los videojuegos, ya sea digital o fisico.
+ * Otro metodo recibe el TreeMap y lo guarda en un CSV.
+ * Cada uno tiene dos metodos auxiliares.
+ *
+ * Métodos:
+ * 	1 - Leer CSV
+ * 	2 . Pasar contenido a Fisico
+ * 	3 . Pasar contenido a Digital
+ * 	4 - Escribir en CSV
+ * 	5 - Pasar Fisico a String
+ * 	6 - Pasar Digital a String
+ */
 public class GestorFicherosCSV {
-
-	//../../resources\biblioteca_juegos_digital.csv
-	//../../resources\biblioteca_juegos_fisico.csv
 
 	/**
 	 * Lee el CSV, puede o leer el de videojuegos fisicos o digitales.
@@ -46,16 +54,16 @@ public class GestorFicherosCSV {
 	 * @param opcion
 	 * @return
 	 */
-	public static HashMap<String, Videojuego> leerCSV(
+	public static TreeMap<Integer, Videojuego> leerCSV(
 			String nombreArchivo
 		) {
-		HashMap<String, Videojuego> videojuegosMap;
+		TreeMap<Integer, Videojuego> videojuegosMap;
 		String		omitirCabecera;
 		String		linea;
 		String[]	splittedLine;
 		Videojuego	videojuego;
 
-		videojuegosMap = new HashMap<>();
+		videojuegosMap = new TreeMap<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(nombreArchivo))) {
 			omitirCabecera = br.readLine();	// Las tres primeras lineas se omite
 			omitirCabecera = br.readLine();
@@ -97,15 +105,15 @@ public class GestorFicherosCSV {
 		ArrayList<String> generos;
 
 		generos = new ArrayList<>(Arrays.asList(
-				campos[3].split("\\.")));
+				campos[4].split("\\.")));
 		fisico = new Fisico(
-				campos[0],
-				campos[1],
+				Integer.parseInt(campos[0]),
 				campos[2],
+				campos[3],
 				generos,
-				campos[4].contains("true"),
-				campos[5],
-				campos[6].contains("true"));
+				campos[5].contains("true"),
+				campos[6],
+				campos[7].contains("true"));
 		return (fisico);
 	}
 
@@ -119,14 +127,14 @@ public class GestorFicherosCSV {
 		ArrayList<String> generos;
 
 		generos = new ArrayList<>(Arrays.asList(
-				campos[3].split("\\.")));
+				campos[4].split("\\.")));
 		digital = new Digital(
-				campos[0],
-				campos[1],
+				Integer.parseInt(campos[0]),
 				campos[2],
+				campos[3],
 				generos,
-				campos[4].contains("true"),
-				campos[5].contains("true"));
+				campos[5].contains("true"),
+				campos[6].contains("true"));
 		return (digital);
 	}
 
@@ -137,7 +145,7 @@ public class GestorFicherosCSV {
 	 * @param opcion
 	 */
 	public static void escribirCSV(
-			HashMap<String,Videojuego> videojuegos,
+			TreeMap<Integer, Videojuego> videojuegos,
 			String nombreArchivo
 		) {
 		String	lineaAEscribir;
@@ -146,7 +154,7 @@ public class GestorFicherosCSV {
 				BufferedWriter bw = new BufferedWriter(fw)
 			) {
 			escribirCabeceraCSV(nombreArchivo);
-			for (Map.Entry<String,Videojuego> entry : videojuegos.entrySet()) {
+			for (Map.Entry<Integer, Videojuego> entry : videojuegos.entrySet()) {
 				if (entry.getValue() instanceof Digital)
 					lineaAEscribir = DigitalToString(entry.getValue());
 				else
@@ -177,6 +185,7 @@ public class GestorFicherosCSV {
 		videojuego = (Digital) Digital;
 		lineaAEscribir = (
 			videojuego.getId() + "," +
+			"digital," +
 			videojuego.getNombre() + "," +
 			videojuego.getDesarrolladora() + "," +
 			videojuego.getStringGenero('.') + "," +
@@ -198,6 +207,7 @@ public class GestorFicherosCSV {
 		videojuego = (Fisico) Fisico;
 		lineaAEscribir = (
 			videojuego.getId() + "," +
+			"fisico," +
 			videojuego.getNombre() + "," +
 			videojuego.getDesarrolladora() + "," +
 			videojuego.getStringGenero('.') + "," +

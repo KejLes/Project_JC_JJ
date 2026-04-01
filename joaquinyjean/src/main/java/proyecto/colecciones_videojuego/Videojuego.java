@@ -11,13 +11,13 @@ import java.util.ArrayList;
  * No han sido comentadas los metodos get, porque se entienden por sí mismos.
  */
 public abstract class Videojuego implements Accionar {
-	String						id;
+	int							id;
 	String						nombre;
 	String						desarrolladora;
 	ArrayList<String>			genero;
 	boolean						estadoDisponible; // Por si se implementa lo de adquirir, la disponibilidad para meterlo al carrito
 
-	public Videojuego(String id, String nombre,
+	public Videojuego(int id, String nombre,
 			String desarrolladora, ArrayList<String> genero,
 			boolean estadoDisponible) {
 		this.id = id;
@@ -29,7 +29,7 @@ public abstract class Videojuego implements Accionar {
 	/*Los getters son... pues eso, getters,
 	metodos para obtener los valores de los atributos
 	 */
-	public String getId() {
+	public int getId() {
 		return this.id;
 	}
 

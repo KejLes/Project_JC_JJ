@@ -14,7 +14,7 @@ public class Digital extends Videojuego{
 
 
     public Digital (
-            String ID,
+            int ID,
             String Nombre,
             String Desarrolladora,
             ArrayList<String> Genero,
@@ -32,7 +32,7 @@ public class Digital extends Videojuego{
     public void mostrarInfo(){
         System.out.printf("""
         Información del videojuego digital:
-        - ID: %s
+        - ID: %d
         - Nombre: %s
         - Desarrolladora: %s
         - Género: %s
