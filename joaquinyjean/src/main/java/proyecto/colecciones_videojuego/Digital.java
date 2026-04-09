@@ -51,4 +51,15 @@ public class Digital extends Videojuego{
     public boolean getConexionRequerida() {
         return (this.conexionRequerida);
     }
+
+    @Override
+    public String toJSON() {
+        return "{\n" +
+                "  \"id\": " + id + ",\n" +
+                "  \"nombre\": \"" + nombre + "\",\n" +
+                "  \"desarrolladora\": \"" + desarrolladora + "\",\n" +
+                "  \"generos\": \"" + getStringGenero('.') + "\",\n" +
+                "  \"conexionRequerida\": " + conexionRequerida + "\n" +
+                "}";
+    }
 }

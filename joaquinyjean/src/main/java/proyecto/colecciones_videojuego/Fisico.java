@@ -57,4 +57,16 @@ public class Fisico extends Videojuego{
     public boolean getCaja() {
         return (this.caja);
     }
+
+    @Override
+    public String toJSON() {
+        return "{\n" +
+                "  \"id\": " + id + ",\n" +
+                "  \"nombre\": \"" + nombre + "\",\n" +
+                "  \"desarrolladora\": \"" + desarrolladora + "\",\n" +
+                "  \"generos\": \"" + getStringGenero('.') + "\",\n" +
+                "  \"estado\": \"" + estado + "\",\n" +
+                "  \"caja\": " + caja + "\n" +
+                "}";
+    }
 }

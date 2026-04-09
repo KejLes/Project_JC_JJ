@@ -1,21 +1,19 @@
 package proyecto.colecciones_videojuego;
 
 import java.util.ArrayList;
+import proyecto.Valorable;
+import proyecto.Exportable;
 
 /**
- * Clase abstracta que representa un videojuego. Contiene atributos comunes a todos los
- * videojuegos y métodos que pueden ser implementados por las clases hijas (Fisico y Digital).
- * Implementa la interfaz Accionar para definir acciones comunes como listar videojuegos,
- * buscar videojuegos y agregar al carrito de compras.
- *
- * No han sido comentadas los metodos get, porque se entienden por sí mismos.
+ * Clase abstracta que representa un videojuego.
  */
-public abstract class Videojuego implements Accionar {
+public abstract class Videojuego implements Accionar, Valorable, Exportable {
 	int							id;
 	String						nombre;
 	String						desarrolladora;
 	ArrayList<String>			genero;
-	boolean						estadoDisponible; // Por si se implementa lo de adquirir, la disponibilidad para meterlo al carrito
+	boolean						estadoDisponible;
+    double                      valoracion;
 
 	public Videojuego(int id, String nombre,
 			String desarrolladora, ArrayList<String> genero,
@@ -25,7 +23,22 @@ public abstract class Videojuego implements Accionar {
 		this.desarrolladora = desarrolladora;
 		this.genero = genero;
 		this.estadoDisponible = estadoDisponible;
+        this.valoracion = 0.0;
 	}
+
+    @Override
+    public double getValoracion() { return valoracion; }
+
+    @Override
+    public void setValoracion(double puntuacion) { this.valoracion = puntuacion; }
+
+    @Override
+    public String toCSV() {
+        return id + "," + nombre + "," + desarrolladora + "," + getStringGenero('.') + "," + estadoDisponible;
+    }
+
+    @Override
+    public abstract String toJSON();
 	/*Los getters son... pues eso, getters,
 	metodos para obtener los valores de los atributos
 	 */

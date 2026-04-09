@@ -24,7 +24,7 @@ public class Main {
 
         System.out.println("Hello videogame library!\n");
         Fisico kingdomHearts = new Fisico(
-            "1"
+            1
             , "Kingdom Hearts"
             , "Square Enix"
             , generosKH
@@ -39,7 +39,7 @@ public class Main {
         generosFortnite.add("Shooter");
 
         Digital Fortnite = new Digital(
-            "2"
+            2
             , "Fortnite"
             , "Epic Games"
             , generosFortnite

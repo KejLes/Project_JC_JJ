@@ -1,0 +1,25 @@
+# Next Development Steps for GameVault
+
+1. RA5: Advanced OOP & Generics
+- Implement a bounded generic method for searching items in any collection (Videojuegos or Soundtracks).
+- Ensure the abstract superclasses (Videojuego, Soundtrack) have the required abstract methods and constructor validations.
+
+- Prompt: "Implement a bounded generic method in a new Utility class that can filter any collection of objects extending a common base (e.g., <T extends BaseMultimedia>). Also, add constructor validations (regex/exceptions) to the Videojuego and Soundtrack abstract classes to ensure no empty names or negative IDs are allowed."
+
+2. RA6: Advanced I/O & Streams
+- Implement RandomAccessFile for a specific use case (e.g., a simple log or a binary data backup).
+- Refactor data listing and searching using the Stream API (filter, map, collect, sorted).
+
+- Prompt: "Refactor the search and list methods in the persistence and collection managers to use Java Streams. Specifically, use .filter(), .sorted(), and .collect() for finding items by name or ID. Also, create a new Logger class that uses RandomAccessFile to record every time the library is loaded or saved."
+
+3. RA7: Swing GUI
+- Create a complete Swing GUI for the project without using visual designers.
+- Include a main window with a JTable to show the GameVault contents and forms to add new items.
+
+- Prompt: "Develop a Swing-based Graphical User Interface for GameVault. Create a MainWindow class with a JMenuBar and a JTable that displays the combined catalog of Videojuegos and Soundtracks. Implement a dialog (JDialog) with a form to add new digital/physical games, ensuring it integrates with the existing GestorFicherosCSV."
+
+4. RA7: Event Handling & Polish
+- Add event listeners for buttons and table row selection.
+- Implement a "Search" bar in the GUI that updates the table in real-time using Streams.
+
+- Prompt: "Add interactive features to the GameVault GUI. Implement a search field with a KeyListener that filters the JTable in real-time using the Stream API. Add a 'Delete' button that removes the selected item from both the table and the corresponding persistence file (CSV/JSON)."

@@ -1,20 +1,19 @@
 package proyecto.colecciones_soundtrack;
 
-public abstract class Soundtrack implements AccionSound{
+import proyecto.Valorable;
+import proyecto.Exportable;
+
+public abstract class Soundtrack implements AccionSound, Valorable, Exportable {
     /**
- * Clase abstracta que representa un soundtrack. Contiene atributos comunes a todos los
- * soundtracks y métodos que pueden ser implementados por las clases hijas.
- * Implementa la interfaz AccionSound para definir acciones comunes como listar soundtracks,
- * buscar soundtracks y agregar al carrito de compras.
- *
- * No han sido comentadas los metodos get, porque se entienden por sí mismos.
+ * Clase abstracta que representa un soundtrack.
  */
 
     int ID;
     String Nombre;
     String Compositor;
     String VideojuegoAsociado;
-    boolean estadoDisponible; // Por si se implementa lo de adquirir, la disponibilidad para meterlo al carrito
+    boolean estadoDisponible;
+    double valoracion;
 
     public Soundtrack(int ID, String Nombre, String Compositor, String VideojuegoAsociado, boolean estadoDisponible) {
         this.ID = ID;
@@ -22,8 +21,22 @@ public abstract class Soundtrack implements AccionSound{
         this.Compositor = Compositor;
         this.VideojuegoAsociado = VideojuegoAsociado;
         this.estadoDisponible = estadoDisponible;
-
+        this.valoracion = 0.0;
     }
+
+    @Override
+    public double getValoracion() { return valoracion; }
+
+    @Override
+    public void setValoracion(double puntuacion) { this.valoracion = puntuacion; }
+
+    @Override
+    public String toCSV() {
+        return ID + "," + Nombre + "," + Compositor + "," + VideojuegoAsociado + "," + estadoDisponible;
+    }
+
+    @Override
+    public abstract String toJSON();
 
     /**
      * Los getters son... pues eso, getters, metodos para obtener los valores de los atributos

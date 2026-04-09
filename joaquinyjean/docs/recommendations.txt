@@ -1,0 +1,58 @@
+# Technical Recommendations for GameVault Rubric Compliance (RA5, RA6, RA7)
+
+To satisfy all the course requirements (RA5-RA7), the project should implement the following features:
+
+1. Advanced OOP (RA5)
+- Abstract Superclass: Ensure `Videojuego` and `Soundtrack` are abstract and have at least 2 abstract methods (e.g., `mostrarInfo()`, `obtenerFormatoDescripcion()`).
+- Constructor Validation: Use `if (id < 0) throw new IllegalArgumentException("ID cannot be negative")` in the base constructor.
+- Interfaces: `Accionar` and `AccionSound` should define the core behavior (listing, searching, adding to cart).
+- Generics: Create a `GenericSearch<T extends Videojuego>` utility class to filter results by name or developer.
+
+2. Collections & Data Structures (RA5)
+- Use `ArrayList` for dynamic lists (genres, soundtracks).
+- Use `HashMap` or `TreeMap` for fast access by ID (already used in `GestorFicherosCSV`).
+- Use `Arrays.asList` or `split` to manage genre lists efficiently.
+
+3. Advanced I/O & Persistence (RA6)
+- File mechanisms:
+  1. BufferedReader (for reading CSV/JSON) - Already implemented.
+  2. BufferedWriter/FileWriter (for saving CSV/JSON) - Already implemented.
+  3. RandomAccessFile (implement a logs or metadata binary backup system).
+- Manual JSON: The current `GestorFicherosJSON` handles manual construction/parsing as required.
+- CSV: Maintain the 3-line header structure for compatibility with the spec.
+
+4. Stream API (RA6)
+- Replace some `for` loops with streams:
+  `videojuegos.values().stream().filter(v -> v.getNombre().contains(query)).sorted(Comparator.comparing(Videojuego::getNombre)).toList();`
+- Use `groupingBy` to group games by developer or genre for specific reports.
+
+5. User Interface (RA7) - Console
+- Improve the menu using `printf` and `System.out.format` for a professional tabular look (already started in `App.java`).
+- Use regex for data validation when reading user input (e.g., `\\d+` for numbers, `[a-zA-Z\\s]+` for names).
+
+6. User Interface (RA7) - Swing
+- Implement a complete GUI (MainWindow, InputDialogs, Tables).
+- Ensure no visual designers are used; the code should be pure Java.
+- Register listeners (ActionListener, KeyListener, MouseListener) for all interactive components.
+- Implement the "Search" bar using a `TableRowSorter` or manual stream filtering.
+
+---
+
+### Implementation Summary
+
+1. **JSON Persistence for Soundtracks**:
+   - Implemented in `GestorFicherosJSON.java`.
+   - Uses `BufferedReader` and `BufferedWriter` with `InputStreamReader/OutputStreamWriter` (UTF-8) for manual parsing.
+   - The JSON is built manually using `StringBuilder` and string concatenation (within `SoundtrackVideojuego.toJSON()`) to avoid external dependencies.
+   - The parser identifies fields by matching `startsWith("\"key\":")` and extracting values between quotes or before commas.
+
+2. **App.java Entry Point**:
+   - Wires `GestorFicherosCSV` and `GestorFicherosJSON` to load data into memory.
+   - Uses `System.out.printf` to generate a professional tabular view for both videogames and soundtracks.
+   - Decoupled from GUI logic to focus on correct data loading and console representation.
+
+3. **Rubric Alignment**:
+   - The new `docs/` files provide a roadmap to fulfill RA5 (OOP/Generics), RA6 (I/O/Streams), and RA7 (GUI/Events).
+   - The project structure now strictly follows Maven conventions and remains compatible with `mvn compile/package`.
+   - Persistence mechanisms (CSV/JSON) are now consistent and robust.
+
