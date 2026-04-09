@@ -23,15 +23,7 @@ public class Main {
         generosKH.add("Acción");
 
         System.out.println("Hello videogame library!\n");
-        Fisico kingdomHearts = new Fisico(
-            "1"
-            , "Kingdom Hearts"
-            , "Square Enix"
-            , generosKH
-            , true
-            , "Bueno"
-            , true
-        );
+        Fisico kingdomHearts = new Fisico("1", "Kingdom Hearts", "Square Enix", generosKH, true, "Bueno", true);
         kingdomHearts.mostrarInfo();
 
         ArrayList<String> generosFortnite = new ArrayList<>();
