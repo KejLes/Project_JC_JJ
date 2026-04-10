@@ -2,10 +2,12 @@ package proyecto.colecciones_soundtrack;
 
 public class SoundtrackVideojuego extends Soundtrack {
 
-    private String duracion; //se escribealgo como 2:00
+    private String duracion; // Ej: "2:36"
 
-    public SoundtrackVideojuego(int ID, String Nombre, String Compositor, String VideojuegoAsociado, String duracion, boolean estadoDisponible) {
-        // llamamos al constructor del padre
+    public SoundtrackVideojuego(int ID, String Nombre, String Compositor,
+                                 String VideojuegoAsociado, String duracion,
+                                 boolean estadoDisponible) {
+        // Llamamos al constructor del padre (Soundtrack)
         super(ID, Nombre, Compositor, VideojuegoAsociado, estadoDisponible);
         this.duracion = duracion;
     }
@@ -14,18 +16,18 @@ public class SoundtrackVideojuego extends Soundtrack {
         return duracion;
     }
 
-    // métodos abstractos obligatorios del padre
+    // ── Métodos abstractos obligatorios del padre ─────────────────────────
 
     @Override
     public void mostrarInfo() {
-        System.out.println("");
-        System.out.println("  ID: " + ID);
-        System.out.println("  Nombre: " + Nombre);
-        System.out.println("  Compositor: " + Compositor);
-        System.out.println("  Videojuego: " + VideojuegoAsociado);
-        System.out.println("  Duración: " + duracion);
-        System.out.println("  Disponible: " + (estadoDisponible ? "Sí" : "No"));
-        System.out.println("");
+        System.out.println("┌─────────────────────────────────────────┐");
+        System.out.println("  ID:          " + ID);
+        System.out.println("  Nombre:      " + Nombre);
+        System.out.println("  Compositor:  " + Compositor);
+        System.out.println("  Videojuego:  " + VideojuegoAsociado);
+        System.out.println("  Duración:    " + duracion);
+        System.out.println("  Disponible:  " + (estadoDisponible ? "Sí" : "No"));
+        System.out.println("└─────────────────────────────────────────┘");
     }
 
     @Override

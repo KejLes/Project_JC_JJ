@@ -26,3 +26,6 @@ Para el proyecto, cuando se vayan a cargar los datos en el programa, los generos
 en un HashMap <int ID, Videojuego> para imprimirlo todo directamente en consola
 Pd: el enunciado pide usara ArrayList y HashMap.
 Oremos
+
+Jean 09/04/26
+¡COMO QUE AHORA TENEMOS QUE HACER LA GUI COMO SI FUERA UN AAAAA! (bob esponja demacrado)
