@@ -45,7 +45,7 @@ import proyecto.colecciones_videojuego.Videojuego;
  * 	5 - Pasar Fisico a String
  * 	6 - Pasar Digital a String
  */
-public class GestorFicherosCSV {
+public class gestorFicherosCSV {
 
 	/**
 	 * Lee el CSV, puede o leer el de videojuegos fisicos o digitales.

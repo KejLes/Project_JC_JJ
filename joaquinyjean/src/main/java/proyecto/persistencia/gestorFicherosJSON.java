@@ -13,11 +13,11 @@ import java.util.List;
 
 import proyecto.colecciones_soundtrack.SoundtrackVideojuego;
 
-public class GestorFicherosJSON {
+public class gestorFicherosJSON {
 
     private String ruta;
 
-    public GestorFicherosJSON(String ruta) {
+    public gestorFicherosJSON(String ruta) {
         this.ruta = ruta;
     }
 

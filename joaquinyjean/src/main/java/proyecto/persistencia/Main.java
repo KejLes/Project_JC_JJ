@@ -19,7 +19,7 @@ public class Main {
 
         System.out.println("Archivo cargado: " + ruta);
 
-        gestorJSON gestor = new gestorJSON(ruta);
+        gestorFicherosJSON gestor = new gestorFicherosJSON(ruta);
         Scanner scanner   = new Scanner(System.in);
         boolean salir     = false;
 
