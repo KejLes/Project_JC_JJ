@@ -1,3 +1,4 @@
+'''mermaid
 classDiagram
     direction TB
 
@@ -283,3 +284,5 @@ classDiagram
     Main ..> Colecciones : crea
     Main ..> GameVaultGUI : crea
     Main ..> Consola : crea
+
+'''
