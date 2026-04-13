@@ -439,7 +439,7 @@ public class GameVaultGUI extends JFrame {
                     v.getDesarrolladora(),
                     v.getGeneroTexto(),
                     v.isEstadoDisponible() ? "Si" : "No",
-                    String.format("%.1f", v.getValoracion())
+                    String.format(java.util.Locale.US, "%.1f", v.getValoracion())
             });
         }
     }
@@ -665,7 +665,7 @@ public class GameVaultGUI extends JFrame {
                     st.getCompositor(),
                     st.getVideojuegoAsociado(),
                     st.isEstadoDisponible() ? "Si" : "No",
-                    String.format("%.1f", st.getValoracion()),
+                    String.format(java.util.Locale.US, "%.1f", st.getValoracion()),
                     st.duracionEnFormato()
             });
         }

@@ -73,13 +73,30 @@ public class GestorCSV {
 
         File fichero = new File(ruta);
         if (!fichero.exists()) {
+            System.err.println("[GestorCSV] Fichero no encontrado: "
+                    + fichero.getAbsolutePath());
             return lista;
         }
 
-        // PASO 1: BufferedReader — lectura secuencial eficiente de todas las lineas
-        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+        System.out.println("[GestorCSV] Leyendo: " + fichero.getAbsolutePath());
+
+        // PASO 1: BufferedReader con UTF-8 explicito
+        // InputStreamReader permite especificar el charset en vez de usar
+        // el encoding del sistema (que en Windows suele ser Cp1252)
+        try (BufferedReader br = new BufferedReader(
+                new java.io.InputStreamReader(
+                        new java.io.FileInputStream(ruta), "UTF-8"))) {
             String linea;
+            boolean primeraLinea = true;
             while ((linea = br.readLine()) != null) {
+                // Eliminar BOM (Byte Order Mark) si existe en la primera linea.
+                // El Bloc de notas de Windows lo anade al guardar en UTF-8
+                if (primeraLinea) {
+                    if (linea.startsWith("\uFEFF")) {
+                        linea = linea.substring(1);
+                    }
+                    primeraLinea = false;
+                }
                 if (!linea.isBlank()) {
                     Videojuego v = parsear(linea);
                     if (v != null) {
@@ -90,7 +107,6 @@ public class GestorCSV {
         }
 
         // PASO 2: RandomAccessFile — construir el indice de posiciones de byte
-        // para poder saltar directamente a cualquier linea en busquedas por ID
         reconstruirIndice();
 
         return lista;
@@ -115,8 +131,10 @@ public class GestorCSV {
             fichero.getParentFile().mkdirs();
         }
 
-        // FileWriter con false: sobreescribe el fichero completo
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta, false))) {
+        // FileWriter con UTF-8 explicito y sin append (sobreescribe)
+        try (BufferedWriter bw = new BufferedWriter(
+                new java.io.OutputStreamWriter(
+                        new java.io.FileOutputStream(ruta), "UTF-8"))) {
             for (Videojuego v : videojuegos) {
                 bw.write(v.toCsv());
                 bw.newLine();

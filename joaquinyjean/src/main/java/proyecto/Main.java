@@ -53,12 +53,15 @@ public class Main {
         Colecciones<Soundtrack> colSoundtracks = new Colecciones<>(Soundtrack::getCompositor);
 
         // --- 3. Cargar datos desde ficheros ---
+        System.out.println("Directorio de trabajo: " + System.getProperty("user.dir"));
+
         try {
             List<Videojuego> videojuegos = gestorCsv.cargar();
             colVideojuegos.cargarTodos(videojuegos);
             System.out.println("Videojuegos cargados: " + videojuegos.size());
         } catch (IOException e) {
-            System.err.println("Error al cargar videojuegos: " + e.getMessage());
+            System.err.println("ERROR al cargar videojuegos: " + e.getMessage());
+            e.printStackTrace();
         }
 
         try {

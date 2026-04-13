@@ -67,7 +67,7 @@ public class Digital extends Videojuego {
      */
     @Override
     public String toJson() {
-        return String.format(
+        return String.format(java.util.Locale.US,
                 "{\"tipo\": \"DIGITAL\", \"id\": %d, \"nombre\": \"%s\", "
                         + "\"desarrolladora\": \"%s\", \"genero\": \"%s\", "
                         + "\"estadoDisponible\": %b, \"valoracion\": %.1f, "
@@ -83,7 +83,7 @@ public class Digital extends Videojuego {
      */
     @Override
     public String toCsv() {
-        return String.format("DIGITAL;%d;%s;%s;%s;%b;%.1f;%b",
+        return String.format(java.util.Locale.US, "DIGITAL;%d;%s;%s;%s;%b;%.1f;%b",
                 getId(), getNombre(), getDesarrolladora(), generosParaCsv(),
                 isEstadoDisponible(), getValoracion(), conexionRequerida);
     }

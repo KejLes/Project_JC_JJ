@@ -74,11 +74,21 @@ public class GestorJSON {
             return lista;
         }
 
-        // Leer todo el contenido con BufferedReader
+        // Leer todo el contenido con BufferedReader y UTF-8 explicito
         StringBuilder contenido = new StringBuilder();
-        try (BufferedReader br = new BufferedReader(new FileReader(ruta))) {
+        try (BufferedReader br = new BufferedReader(
+                new java.io.InputStreamReader(
+                        new java.io.FileInputStream(ruta), "UTF-8"))) {
             String linea;
+            boolean primeraLinea = true;
             while ((linea = br.readLine()) != null) {
+                // Eliminar BOM si existe
+                if (primeraLinea) {
+                    if (linea.startsWith("\uFEFF")) {
+                        linea = linea.substring(1);
+                    }
+                    primeraLinea = false;
+                }
                 contenido.append(linea).append("\n");
             }
         }
@@ -125,7 +135,9 @@ public class GestorJSON {
             fichero.getParentFile().mkdirs();
         }
 
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ruta, false))) {
+        try (BufferedWriter bw = new BufferedWriter(
+                new java.io.OutputStreamWriter(
+                        new java.io.FileOutputStream(ruta), "UTF-8"))) {
             bw.write("[");
             bw.newLine();
             for (int i = 0; i < soundtracks.size(); i++) {

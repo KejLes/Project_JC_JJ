@@ -76,7 +76,7 @@ public class Fisico extends Videojuego {
      */
     @Override
     public String toJson() {
-        return String.format(
+        return String.format(java.util.Locale.US,
                 "{\"tipo\": \"FISICO\", \"id\": %d, \"nombre\": \"%s\", "
                         + "\"desarrolladora\": \"%s\", \"genero\": \"%s\", "
                         + "\"estadoDisponible\": %b, \"valoracion\": %.1f, "
@@ -93,7 +93,9 @@ public class Fisico extends Videojuego {
      */
     @Override
     public String toCsv() {
-        return String.format("FISICO;%d;%s;%s;%s;%b;%.1f;%s;%b",
+        // Locale.US fuerza el punto decimal (4.8) en vez de coma (4,8)
+        // que usaria el locale espanol por defecto
+        return String.format(java.util.Locale.US, "FISICO;%d;%s;%s;%s;%b;%.1f;%s;%b",
                 getId(), getNombre(), getDesarrolladora(), generosParaCsv(),
                 isEstadoDisponible(), getValoracion(), estado, caja);
     }

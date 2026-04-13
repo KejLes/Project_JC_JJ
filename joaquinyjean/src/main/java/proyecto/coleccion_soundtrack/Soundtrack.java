@@ -114,7 +114,7 @@ public class Soundtrack implements Valorable, Exportable {
         sb.append("\"compositor\": \"").append(compositor).append("\", ");
         sb.append("\"videojuegoAsociado\": \"").append(videojuegoAsociado).append("\", ");
         sb.append("\"estadoDisponible\": ").append(estadoDisponible).append(", ");
-        sb.append("\"valoracion\": ").append(String.format("%.1f", valoracion)).append(", ");
+        sb.append("\"valoracion\": ").append(String.format(java.util.Locale.US, "%.1f", valoracion)).append(", ");
         sb.append("\"duracion\": ").append(duracion);
         sb.append("}");
         return sb.toString();
@@ -128,7 +128,7 @@ public class Soundtrack implements Valorable, Exportable {
      */
     @Override
     public String toCsv() {
-        return String.format("%d;%s;%s;%s;%b;%.1f;%d",
+        return String.format(java.util.Locale.US, "%d;%s;%s;%s;%b;%.1f;%d",
                 id, nombre, compositor, videojuegoAsociado,
                 estadoDisponible, valoracion, duracion);
     }
