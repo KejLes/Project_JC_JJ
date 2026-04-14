@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "nombre": "Megalovania",
+        "compositor": "Toby Fox",
+        "videojuegoAsociado": "Undertale",
+        "duracion": "2:36",
+        "estadoDisponible": true
+    },
+    {
+        "id": 2,
+        "nombre": "One-Winged Angel",
+        "compositor": "Nobuo Uematsu",
+        "videojuegoAsociado": "Final Fantasy VII",
+        "duracion": "4:14",
+        "estadoDisponible": true
+    },
+    {
+        "id": 3,
+        "nombre": "Oath to Order",
+        "compositor": "Koji Kondo",
+        "videojuegoAsociado": "The Legend of Zelda: Majoras Mask",
+        "duracion": "3:02",
+        "estadoDisponible": false
+    },
+    {
+        "id": 4,
+        "nombre": "EMber ",
+        "compositor": "Kubbi",
+        "videojuegoAsociado": "JSAB",
+        "duracion": "4:20",
+        "estadoDisponible": true
+    }
+]
