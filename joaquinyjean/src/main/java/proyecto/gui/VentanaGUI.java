@@ -1,19 +1,35 @@
 package proyecto.gui;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.TreeMap;
 
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import proyecto.colecciones_soundtrack.SoundtrackVideojuego;
 import proyecto.colecciones_videojuego.Digital;
 import proyecto.colecciones_videojuego.Fisico;
 import proyecto.colecciones_videojuego.Videojuego;
-import proyecto.colecciones_soundtrack.SoundtrackVideojuego;
 import proyecto.persistencia.gestorFicherosCSV;
 import proyecto.persistencia.gestorFicherosJSON;
 
@@ -83,8 +99,6 @@ public class VentanaGUI extends JFrame {
         panelNorte.add(campoBuscar);
         JButton btnBuscar = new JButton("Buscar");
         panelNorte.add(btnBuscar);
-        JButton btnVerTodos = new JButton("Ver todos");
-        panelNorte.add(btnVerTodos);
 
         add(panelNorte, BorderLayout.NORTH);
 
@@ -127,16 +141,6 @@ public class VentanaGUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 buscarPorId();
             }
-        });
-
-        // Boton Ver todos
-        btnVerTodos.addActionListener(e -> {
-            if (modoActual.equals("videojuegos")) {
-                cargarTablaVideojuegos(videojuegos);
-            } else if (modoActual.equals("soundtracks")) {
-                cargarTablaSoundtracks(soundtracks);
-            }
-            campoBuscar.setText("");
         });
 
         // Boton Anadir
